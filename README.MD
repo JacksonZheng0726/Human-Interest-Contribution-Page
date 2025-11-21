@@ -7,21 +7,6 @@ A modern web application for managing 401(k) retirement contributions, tracking 
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-18-blue)
 ![Docker](https://img.shields.io/badge/Docker-Ready-blue)
 
-## 📋 Table of Contents
-
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Prerequisites](#prerequisites)
-- [Installation & Setup](#installation--setup)
-- [Project Structure](#project-structure)
-- [Available Scripts](#available-scripts)
-- [Database Schema](#database-schema)
-- [Usage Guide](#usage-guide)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-
----
-
 ## ✨ Features
 
 - 🎯 **Contribution Settings**: Choose between percentage-based or fixed dollar contributions
@@ -140,7 +125,6 @@ docker exec -it Human-Interest psql -U postgres -d dev
 # dev=#
 ```
 
-Run some test queries:
 
 ```sql
 -- List all tables
