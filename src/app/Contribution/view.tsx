@@ -279,12 +279,6 @@ export default function ContributionPage() {
             />
           </div>
 
-          <div className="form-group">
-            <label>
-              Year-to-Date Contributions: <strong>{formatCurrency(ytdContributions)}</strong>
-            </label>
-          </div>
-
           <button
             className="btn btn-primary"
             onClick={handleSaveContribution}
