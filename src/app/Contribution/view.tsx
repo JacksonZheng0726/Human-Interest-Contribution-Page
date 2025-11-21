@@ -6,9 +6,9 @@ import {
   ContributionRetrieval, 
   LoadUserInfo,
   GetContributionHistory,
-} from './action';
+} from './Server Action/action';
 import './Contribution.css';
-
+import { ContributionHistoryItem } from '@/Service/Contribution';
 export default function ContributionPage() {
   const [userId] = useState('jack123');
   const [userInfo, setUserInfo] = useState<{
@@ -55,9 +55,9 @@ export default function ContributionPage() {
 
     const totalMonths = yearsUntilRetirement * 12;
 
-    if (monthlyContribution === 0) {
-      return 0;
-    }
+    // if (monthlyContribution === 0) {
+    //   return 0;
+    // }
 
     const futureValue = monthlyContribution * totalMonths + currentBalance
 

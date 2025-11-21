@@ -2,8 +2,8 @@
 'use server';
 
 import { ContributionHistoryItem, ContributionRecord } from '@/Service/Contribution';
-import { getContribution, saveContribution, getHistory} from '../../Service/Contribution/service';
-import { getUserInformation} from '../../Service/user/service';
+import { getContribution, saveContribution, getHistory} from '../../../Service/Contribution/service';
+import { getUserInformation} from '../../../Service/user/service';
 
 export interface ContributionDetail {
   contributionType: 'fixed' | 'percentage';
