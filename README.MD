@@ -62,10 +62,10 @@ npm install
 # - PostgreSQL client (pg)
 # - All other required packages from package.json
 ```
-```
+
 
 ### Step 3: Set Up Environment Variables
-
+```
 Create a `.env` file in the root directory with the following variables:
 
 #### **Option 1: macOS/Linux (Terminal)**
@@ -107,7 +107,6 @@ POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
 MASTER_SECRET=tZCKhcLZZRUQo4T0eR9p9jc6UnrQuDWX
 ``````
-```
 
 ```
 
