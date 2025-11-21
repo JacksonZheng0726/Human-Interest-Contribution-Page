@@ -44,10 +44,10 @@ Follow these steps to get the application running locally:
 
 ```bash
 # Clone the repository
-git clone git@github.com:JacksonZheng0726/Human-Interest-Contribution-Page.git
+git clone https://github.com/JacksonZheng0726/Human-Interest-Contribution-Page.git
 
-# Navigate to the project directory
-cd 401k-contribution-manager
+# Navigate to the project directory(the path might be different depend on where you put the file)
+cd Human-Interest-Contribution-Page
 ```
 
 ### Step 2: Install Dependencies
@@ -70,28 +70,39 @@ Create a `.env.local` file in the root directory:
 
 ```bash
 # For macOS/Linux
-touch .env.local
+# Create .env file if it doesn't exist
+touch .env
 
-# For Windows (PowerShell)
-New-Item .env.local -ItemType File
-```
+# Add variables line by line
+echo "POSTGRES_DB=dev" >> .env
+echo "POSTGRES_USER=postgres" >> .env
+echo "POSTGRES_PASSWORD=postgres" >> .env
+echo "MASTER_SECRET=tZCKhcLZZRUQo4T0eR9p9jc6UnrQuDWX" >> .env
 
+# Verify contents
+cat .env
+
+Add .env variable through terminal for Windows
+New-Item -Path .env -ItemType File -Force
+
+# Add variables line by line
+Add-Content -Path .env -Value "POSTGRES_DB=dev"
+Add-Content -Path .env -Value "POSTGRES_USER=postgres"
+Add-Content -Path .env -Value "POSTGRES_PASSWORD=postgres"
+Add-Content -Path .env -Value "MASTER_SECRET=tZCKhcLZZRUQo4T0eR9p9jc6UnrQuDWX"
+
+# Verify contents
+Get-Content .env
+
+If the above methods not works, just manually create it in your IDE and paste the following into the file
 Add the following environment variables:
-
 ```
 POSTGRES_DB=dev
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
 MASTER_SECRET=tZCKhcLZZRUQo4T0eR9p9jc6UnrQuDWX
 
-# Next.js Configuration
-NEXT_PUBLIC_API_URL=http://localhost:3000
 ```
-
-**Important Notes:**
-- Never commit `.env.local` to version control
-- These are default values for local development
-- Change credentials in production environments
 
 ### Step 4: Start the Database
 
@@ -124,7 +135,6 @@ docker exec -it Human-Interest psql -U postgres -d dev
 # Type "help" for help.
 # dev=#
 ```
-
 
 ```sql
 -- List all tables
