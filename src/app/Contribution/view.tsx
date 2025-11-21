@@ -9,14 +9,6 @@ import {
 } from './action';
 import './Contribution.css';
 
-interface ContributionHistoryItem {
-  id: string;
-  contributionDate: Date;
-  amount: number;
-  contributionType: string;
-  // paycheckAmount?: number;  // ← Add this optional field
-}
-
 export default function ContributionPage() {
   const [userId] = useState('jack123');
   const [userInfo, setUserInfo] = useState<{
@@ -29,11 +21,10 @@ export default function ContributionPage() {
 
   const [contributionType, setContributionType] = useState<'fixed' | 'percentage'>('percentage');
   const [amount, setAmount] = useState<number>(0);
-  const [ytdContributions, setYtdContributions] = useState<number>(0);
   const [contributionHistory, setContributionHistory] = useState<ContributionHistoryItem[]>([]);
 
 
-  const [currentBalance] = useState<number>(0);
+  const [currentBalance, SetCurrentBalance] = useState<number>(0);
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
@@ -68,8 +59,7 @@ export default function ContributionPage() {
       return 0;
     }
 
-    const futureValue = monthlyContribution * totalMonths + currentBalance;
-      // ((Math.pow(1 + monthlyReturn, totalMonths) - 1) / monthlyReturn);
+    const futureValue = monthlyContribution * totalMonths + currentBalance
 
     return futureValue;
   };
@@ -126,17 +116,12 @@ export default function ContributionPage() {
     startTransition(async () => {
       try {
         const result = await GetContributionHistory(userId, 12);
+        const totalContributions = result.reduce((sum, item) => sum + Number(item.amount), 0);
+        SetCurrentBalance(totalContributions);
         
-
         if (result) {
           setContributionHistory(result);
           
-          const currentYear = new Date().getFullYear();
-          const ytd = result
-            .filter((item: { contributionDate: string | number | Date; }) => new Date(item.contributionDate).getFullYear() === currentYear)
-            .reduce((sum: number, item: { amount: number }) => sum + Number(item.amount), 0);
-          
-          setYtdContributions(ytd);
         }
       } catch (error) {
         console.error('Error loading history:', error);
@@ -320,9 +305,7 @@ export default function ContributionPage() {
                 <div className="summary-item">
                   <span className="summary-label">Total Contributions:</span>
                   <span className="summary-value">
-                    {formatCurrency(
-                      contributionHistory.reduce((sum, item) => sum + Number(item.amount), 0)
-                    )}
+                    {formatCurrency(currentBalance)}
                   </span>
                 </div>
                 <div className="summary-item">
