@@ -108,17 +108,13 @@ POSTGRES_PASSWORD=postgres
 MASTER_SECRET=tZCKhcLZZRUQo4T0eR9p9jc6UnrQuDWX
 ``````
 
-```
-
 ### Step 4: Start the Database
 
 Open a terminal and start the PostgreSQL container:
-
-```bash
+`````bash
 # Start Docker containers in detached mode
 docker-compose up -d
-
-```
+`````
 
 **To stop the database:**
 ```bash
