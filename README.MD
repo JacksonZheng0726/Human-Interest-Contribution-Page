@@ -66,14 +66,14 @@ npm install
 
 ### Step 3: Set Up Environment Variables
 
-Create a `.env` file in the root directory:
+Create a `.env` file in the root directory with the following variables:
 
-```bash
-# For macOS/Linux
-# Create .env file if it doesn't exist
+#### **Option 1: macOS/Linux (Terminal)**
+``````bash
+# Create .env file
 touch .env
 
-# Add variables line by line
+# Add variables
 echo "POSTGRES_DB=dev" >> .env
 echo "POSTGRES_USER=postgres" >> .env
 echo "POSTGRES_PASSWORD=postgres" >> .env
@@ -81,11 +81,14 @@ echo "MASTER_SECRET=tZCKhcLZZRUQo4T0eR9p9jc6UnrQuDWX" >> .env
 
 # Verify contents
 cat .env
+``````
 
-Add .env variable through terminal for Windows
+#### **Option 2: Windows (PowerShell)**
+``````powershell
+# Create .env file
 New-Item -Path .env -ItemType File -Force
 
-# Add variables line by line
+# Add variables
 Add-Content -Path .env -Value "POSTGRES_DB=dev"
 Add-Content -Path .env -Value "POSTGRES_USER=postgres"
 Add-Content -Path .env -Value "POSTGRES_PASSWORD=postgres"
@@ -93,13 +96,17 @@ Add-Content -Path .env -Value "MASTER_SECRET=tZCKhcLZZRUQo4T0eR9p9jc6UnrQuDWX"
 
 # Verify contents
 Get-Content .env
+``````
 
-If the above methods not works, just manually create it in your IDE and paste the following into the file
-Add the following environment variables:
+#### **Option 3: Manual Creation (All Platforms)**
+
+If the above methods don't work, create a `.env` file manually in your IDE or text editor and paste the following:
+``````env
 POSTGRES_DB=dev
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
 MASTER_SECRET=tZCKhcLZZRUQo4T0eR9p9jc6UnrQuDWX
+``````
 ```
 
 ```
