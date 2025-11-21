@@ -1,23 +1,15 @@
-// src/app/Contribution/actions.ts
 'use server';
 
-import { ContributionHistoryItem, ContributionRecord } from '@/Service/Contribution';
+import { ContributionHistoryItem, ContributionRecord, ContributionData } from '@/Service/Contribution';
 import { getContribution, saveContribution, getHistory} from '../../../Service/Contribution/service';
 import { getUserInformation} from '../../../Service/user/service';
 
-export interface ContributionDetail {
-  contributionType: 'fixed' | 'percentage';
-  amount: number;
-}
 
 
 /**
  * Get contribution history
  */
-export async function GetContributionHistory(
-  userId: string, 
-  limit: number = 12
-): Promise<ContributionHistoryItem[]> {
+export async function GetContributionHistory( userId: string, limit: number = 12): Promise<ContributionHistoryItem[]> {
   if (!userId) {
     console.error('User ID is required');
     return [];
@@ -35,7 +27,7 @@ export async function LoadUserInfo(userId: string) {
  */
 export async function ContributionSave(
   userId: string, 
-  contributionDetail: ContributionDetail
+  contributionDetail: ContributionData
 ) {
   try {
     if (!userId) throw new Error('User ID is required');
@@ -53,13 +45,13 @@ export async function ContributionSave(
     return {
       success: true,
       data: saved,
-      message: 'Contribution saved successfully'
+      message: 'Contribution saved successfully',
     };
   } catch (error) {
-    console.error('Error saving contribution:', error);
+    console.error('Error in ContributionSave:', error);
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Failed to save contribution'
+      error: error instanceof Error ? error.message : 'Failed to save contribution',
     };
   }
 }

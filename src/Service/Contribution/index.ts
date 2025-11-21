@@ -10,7 +10,6 @@ export interface ContributionRecord {
   userId: string;
   contributionType: 'fixed' | 'percentage';
   amount: number;
-  yearToDateContributions: number;
   createdAt: Date;
   updatedAt: Date;
 }

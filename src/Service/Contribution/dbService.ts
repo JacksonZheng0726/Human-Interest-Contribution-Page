@@ -72,7 +72,7 @@ export class ContributionDbService {
     } else {
       const insert = `
         INSERT INTO contribution_setting (user_id, contribution_type, amount)
-        VALUES ($1, $2, $3, 0)
+        VALUES ($1, $2, $3)
         RETURNING 
           id,
           user_id as "userId",
@@ -96,27 +96,6 @@ export class ContributionDbService {
     }
   }
 
-
-/**
- * Get Year-to-Date (YTD) contributions from history
- */
-public async getYTDContributions(userId: string, year?: number): Promise<number> {
-  const currentYear = year || new Date().getFullYear();
-  
-  const select = `
-    SELECT COALESCE(SUM(amount), 0) as ytd
-    FROM contribution_history
-    WHERE user_id = $1
-    AND EXTRACT(YEAR FROM contribution_date) = $2
-  `;
-  
-  const result = await pool.query({
-    text: select,
-    values: [userId, currentYear]
-  });
-  
-  return parseFloat(result.rows[0].ytd);
-}
 
 /**
  * Get contribution history for a user
@@ -151,22 +130,6 @@ public async getContributionHistory(
   return result.rows;
 }
 
-  /**
-   * Calculate monthly contribution amount based on settings
-   */
-  public async calculateMonthlyContribution(userId: string, monthlySalary: number): Promise<number> {
-    const contribution = await this.getContribution(userId);
-    
-    if (!contribution) {
-      return 0;
-    }
-    
-    if (contribution.contributionType === 'percentage') {
-      return monthlySalary * (contribution.amount / 100);
-    } else {
-      return contribution.amount;
-    }
-  }
 }
 
 export const contributionDbService = new ContributionDbService();
