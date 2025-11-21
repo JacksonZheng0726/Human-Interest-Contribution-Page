@@ -66,7 +66,7 @@ npm install
 
 ### Step 3: Set Up Environment Variables
 
-Create a `.env.local` file in the root directory:
+Create a `.env` file in the root directory:
 
 ```bash
 # For macOS/Linux
@@ -96,11 +96,11 @@ Get-Content .env
 
 If the above methods not works, just manually create it in your IDE and paste the following into the file
 Add the following environment variables:
-```
 POSTGRES_DB=dev
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
 MASTER_SECRET=tZCKhcLZZRUQo4T0eR9p9jc6UnrQuDWX
+```
 
 ```
 
