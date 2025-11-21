@@ -158,6 +158,4 @@ In a new terminal (keep the database running):
 ```bash
 # Start Next.js development server
 npm run dev
-```
-expected_out: http://localhost:3000
-```
+
